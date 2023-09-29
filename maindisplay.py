@@ -36,14 +36,19 @@ def main():
 
     #Make button | (window, location-X, location-Y, Width, Height)
     button = Button(screen, 1060, 650, 200, 50, text='Submit', inactiveColour=(200, 50, 0), onClick=lambda: output(bottom_hue, bottom_Saturation, bottom_Lightness, top_hue, top_Saturation, top_Lightness))
-    
     running = True
-
+    
     while running:
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
                 running = False
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                # get MOUSEBUTTONDOWN positions
+                if 650 <= pygame.mouse.get_pos()[1] <= 700 and 1060 <= pygame.mouse.get_pos()[0] <= 1260:
+                    # set img when Submit
+                    global img
+                    img = setimg()
         
         #Screen color | RGB
         screen.fill((128, 128, 128))

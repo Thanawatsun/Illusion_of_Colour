@@ -9,5 +9,7 @@ def output(b_h, b_s, b_l, t_h, t_s, t_l):
     mask = cv2.inRange(cv_img, lower, upper)
     res = cv2.bitwise_and(cv_img, cv_img, mask= mask)
     cv2.imwrite("pictures/outputimgs/room-1-with-obj-change.png", res)
-    global img
+    
+def setimg():
     img = pygame.image.load("pictures/outputimgs/room-1-with-obj-change.png").convert_alpha()
+    return img
