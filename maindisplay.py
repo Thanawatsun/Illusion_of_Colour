@@ -33,9 +33,11 @@ def main():
     b_s_slider = Slider(screen, 725, 350, 500, 30, min=0, max=255, step=1)
     t_l_slider = Slider(screen, 725, 450, 500, 30, min=0, max=255, step=1)
     b_l_slider = Slider(screen, 725, 550, 500, 30, min=0, max=255, step=1)
+    button_positions = (1060,650)
+    button_size = (200,50)
 
     #Make button | (window, location-X, location-Y, Width, Height)
-    button = Button(screen, 1060, 650, 200, 50, text='Submit', inactiveColour=(200, 50, 0), onClick=lambda: output(bottom_hue, bottom_Saturation, bottom_Lightness, top_hue, top_Saturation, top_Lightness))
+    button = Button(screen, button_positions[0], button_positions[1], button_size[0], button_size[1], text='Submit', inactiveColour=(200, 50, 0))
     running = True
     
     while running:
@@ -45,8 +47,9 @@ def main():
                 running = False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 # get MOUSEBUTTONDOWN positions
-                if 650 <= pygame.mouse.get_pos()[1] <= 700 and 1060 <= pygame.mouse.get_pos()[0] <= 1260:
+                if button_positions[1] <= pygame.mouse.get_pos()[1] <= button_positions[1]+button_size[1] and button_positions[0] <= pygame.mouse.get_pos()[0] <= button_positions[0]+button_size[0]:
                     # set img when Submit
+                    output(bottom_hue, bottom_Saturation, bottom_Lightness, top_hue, top_Saturation, top_Lightness)
                     global img
                     img = setimg()
         
