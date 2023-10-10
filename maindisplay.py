@@ -24,8 +24,8 @@ bottom_Lightness = 0
 
 def main():
     #Slider
-    t_h_slider = Slider(screen, 725, 50, 500, 30, min=0, max=179, step=1, initial=179)
-    b_h_slider = Slider(screen, 725, 150, 500, 30, min=0, max=179, step=1, initial=0)
+    t_h_slider = Slider(screen, 725, 50, 500, 30, min=0, max=255, step=1, initial=255)
+    b_h_slider = Slider(screen, 725, 150, 500, 30, min=0, max=255, step=1, initial=0)
     t_s_slider = Slider(screen, 725, 250, 500, 30, min=0, max=255, step=1, initial=255)
     b_s_slider = Slider(screen, 725, 350, 500, 30, min=0, max=255, step=1, initial=0)
     t_l_slider = Slider(screen, 725, 450, 500, 30, min=0, max=255, step=1, initial=255)
