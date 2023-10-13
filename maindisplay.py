@@ -5,6 +5,7 @@ import numpy as np
 from pygame_widgets.slider import Slider
 from pygame_widgets.button import Button
 from output import *
+import checkresult
 
 pygame.init()
     
@@ -23,6 +24,7 @@ top_Lightness = 0
 bottom_Lightness = 0
 
 def main():
+    
     #Slider
     t_h_slider = Slider(screen, 725, 50, 500, 30, min=0, max=255, step=1, initial=255)
     b_h_slider = Slider(screen, 725, 150, 500, 30, min=0, max=255, step=1, initial=0)
@@ -45,6 +47,8 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
                     running = False
+                if event.key == pygame.K_SPACE:
+                    checkresult.run()
         
         #Screen color | RGB
         screen.fill((128, 128, 128))
@@ -52,13 +56,13 @@ def main():
         #Get value from slider
         top_hue = t_h_slider.getValue()
         bottom_hue = b_h_slider.getValue()
-        top_Saturation = t_s_slider.getValue()
-        bottom_Saturation = b_s_slider.getValue()
-        top_Lightness = t_l_slider.getValue()
-        bottom_Lightness = b_l_slider.getValue()
+        top_saturation = t_s_slider.getValue()
+        bottom_saturation = b_s_slider.getValue()
+        top_lightness = t_l_slider.getValue()
+        bottom_lightness = b_l_slider.getValue()
 
         #Change output image
-        output(bottom_hue, bottom_Saturation, bottom_Lightness, top_hue, top_Saturation, top_Lightness)
+        output(bottom_hue, bottom_saturation, bottom_lightness, top_hue, top_saturation, top_lightness)
         img = setimg()
 
         #Place image in to screen

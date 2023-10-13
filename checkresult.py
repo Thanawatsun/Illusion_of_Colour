@@ -1,15 +1,3 @@
-class GFG: 
-	
-	# methods 
-	def add(self, a, b): 
-		return a + b 
-	def sub(self, a, b): 
-		return a - b 
-
-# explicit function	 
-def method(): 
-	print("GFG")
-
 from skimage.metrics import structural_similarity
 import cv2
 
@@ -22,5 +10,8 @@ def run():
     second_gray = cv2.cvtColor(second, cv2.COLOR_BGR2GRAY)
 
     # Compute SSIM between two images
-    score = structural_similarity(first_gray, second_gray, full=True)
+    score, diff = structural_similarity(first_gray, second_gray, full=True)
     print("Similarity Score: {:.3f}%".format(score * 100))
+
+def method(): 
+	print("GFG")
