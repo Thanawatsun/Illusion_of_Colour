@@ -1,7 +1,8 @@
 import pygame, sys
 import pygame_widgets
-from pygame_widgets.slider import Slider
 from pygame_widgets.button import Button
+import maindisplay
+
 pygame.init()
 
 # Window Name
@@ -35,15 +36,14 @@ def menu():
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
+                sys.exit()
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_press = pygame.mouse.get_pressed()
                 if mouse_press[0] and mouse_location[0] >= 560 and mouse_location[0] <= 760 and mouse_location[1] >= 650 and mouse_location[1] <= 700:
                     # The button is clicked, perform your action
-                    print("Button Clicked!")
-                    running = False
                     button.hide()  # Hide the button
                     
         pygame_widgets.update(events)
         pygame.display.update()
 
-
+menu()

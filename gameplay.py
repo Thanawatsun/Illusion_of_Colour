@@ -55,7 +55,7 @@ def gameplay():
     )
     running = True
     # Screen color | RGB
-    screen.fill((254, 128, 128))
+    screen.fill((128, 128, 128))
     while running:
         mouse_location = pygame.mouse.get_pos()
         events = pygame.event.get()
@@ -65,9 +65,7 @@ def gameplay():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_press = pygame.mouse.get_pressed()
                 if mouse_press[0] and mouse_location[0] >= 1060 and mouse_location[0] <= 1260 and mouse_location[1] >= 650 and mouse_location[1] <= 700:
-                    print(456)
-                    running = False
-                    pygame.quit()
+                    t_h_slider.hide()
         # Get value from slider
         
         top_hue = t_h_slider.getValue()
@@ -93,10 +91,3 @@ def gameplay():
 
         pygame_widgets.update(events)
         pygame.display.update()
-        print("re")
-
-
-        pygame_widgets.update(events)
-        pygame.display.update()
-
-

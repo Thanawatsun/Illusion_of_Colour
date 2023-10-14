@@ -12,4 +12,4 @@ def run():
 
     # Compute SSIM between two images
     score, diff = structural_similarity(first_gray, second_gray, full=True)
-    print("Similarity Score: {:.3f}%".format(score * 100))
+    return "{:.3f}%".format(score * 100)

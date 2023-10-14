@@ -3,9 +3,9 @@ import pygame_widgets
 import cv2
 import numpy as np
 
-
 def output(b_h, b_s, b_l, t_h, t_s, t_l):
-    cv_img = cv2.imread("pictures/baseimgs/room-1-with-obj.png")
+    test = "pictures/baseimgs/room-1-with-obj.png"
+    cv_img = cv2.imread(test)
     lower = np.array([b_h, b_s, b_l])
     upper = np.array([t_h, t_s, t_l])
     mask = cv2.inRange(cv_img, lower, upper)
@@ -14,7 +14,5 @@ def output(b_h, b_s, b_l, t_h, t_s, t_l):
 
 
 def setimg():
-    img = pygame.image.load(
-        "pictures/outputimgs/room-1-with-obj-change.png"
-    ).convert_alpha()
+    img = pygame.image.load("pictures/outputimgs/room-1-with-obj-change.png").convert_alpha()
     return img
