@@ -57,7 +57,19 @@ def main(stage):
     bgimgframe = pygame.image.load("image_UI/imageFrame.png").convert_alpha()
     bgwantframe = pygame.image.load("image_UI/wantFrame.png").convert_alpha()
     bgsliderframe = pygame.image.load("image_UI/sliderFrame.png").convert_alpha()
+    previewbut = pygame.image.load("image_UI/preview.png").convert_alpha()
     submitbut = pygame.image.load("image_UI/submit.png").convert_alpha()
+
+    img = setimg(stage, 1)
+    output(
+        0,
+        0,
+        0,
+        255,
+        255,
+        255,
+        stage
+    )
 
     # HSL
     top_hue = 0
@@ -82,9 +94,8 @@ def main(stage):
         screen.blit(bgimgframe, (23, 25))
         screen.blit(bgwantframe, (45, 492))
         screen.blit(bgsliderframe, (792, 26))
-        screen.blit(submitbut, (820, 620))
-
-        img = setimg(stage)
+        screen.blit(previewbut, (810, 620))
+        screen.blit(submitbut, (1030, 620))
 
         # Place image in to screen
         screen.blit(img, (73, 50))
@@ -99,8 +110,26 @@ def main(stage):
                 mouse_press = pygame.mouse.get_pressed()
                 if (
                     mouse_press[0]
-                    and mouse_location[0] >= 820
-                    and mouse_location[0] <= 1230
+                    and mouse_location[0] >= 810
+                    and mouse_location[0] <= 1014
+                    and mouse_location[1] >= 620
+                    and mouse_location[1] <= 686
+                ):
+                    # Change output image
+                    output(
+                        bottom_hue,
+                        bottom_saturation,
+                        bottom_lightness,
+                        top_hue,
+                        top_saturation,
+                        top_lightness,
+                        stage
+                    )
+                    img = setimg(stage, 2)
+                elif (
+                    mouse_press[0]
+                    and mouse_location[0] >= 1030
+                    and mouse_location[0] <= 1234
                     and mouse_location[1] >= 620
                     and mouse_location[1] <= 686
                 ):
@@ -111,6 +140,19 @@ def main(stage):
                     t_l_slider.hide()
                     b_l_slider.hide()
                     result(stage)
+            if event.type == pygame.KEYUP:
+                if event.key == pygame.K_SPACE:
+                    # Change output image
+                    output(
+                        bottom_hue,
+                        bottom_saturation,
+                        bottom_lightness,
+                        top_hue,
+                        top_saturation,
+                        top_lightness,
+                        stage
+                    )
+                    img = setimg(stage, 2)
 
         # Get value from slider
         top_hue = t_h_slider.getValue()
@@ -119,17 +161,6 @@ def main(stage):
         bottom_saturation = b_s_slider.getValue()
         top_lightness = t_l_slider.getValue()
         bottom_lightness = b_l_slider.getValue()
-
-        # Change output image
-        output(
-            bottom_hue,
-            bottom_saturation,
-            bottom_lightness,
-            top_hue,
-            top_saturation,
-            top_lightness,
-            stage
-        )
 
         pygame_widgets.update(events)
         pygame.display.update()
