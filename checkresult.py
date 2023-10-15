@@ -2,9 +2,12 @@ from skimage.metrics import structural_similarity
 import cv2
 
 
-def run():
-    first = cv2.imread("pictures/checkimgs/room-1-with-obj-check.png")
-    second = cv2.imread("pictures/outputimgs/room-1-with-obj-change.png")
+def run(stage):
+    ansimg = "pictures/checkimgs/room-%d-with-obj-check.png" % stage
+    checkimg = "pictures/outputimgs/room-%d-with-obj-change.png" % stage
+
+    first = cv2.imread(ansimg)
+    second = cv2.imread(checkimg)
 
     # Convert images to grayscale
     first_gray = cv2.cvtColor(first, cv2.COLOR_BGR2GRAY)

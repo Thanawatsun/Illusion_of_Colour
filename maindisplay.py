@@ -14,10 +14,10 @@ pygame.display.set_caption("gameplay")
 screen = pygame.display.set_mode((1280, 720))
 
 
-def result():
-    font = pygame.font.Font('freesansbold.ttf', 32)
+def result(stage):
+    font = pygame.font.Font("freesansbold.ttf", 32)
     head = font.render("Your Score", True, (255, 255, 255))
-    score = font.render(checkresult.run(), True, (255, 255, 255))
+    score = font.render(checkresult.run(stage), True, (255, 255, 255))
     while True:
         screen.fill((128, 128, 128))
 
@@ -33,14 +33,14 @@ def result():
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_SPACE:
                     menu()
-        
-        checkresult.run()
+
+        checkresult.run(stage)
 
         pygame_widgets.update(events)
         pygame.display.update()
 
 
-def main():
+def main(stage):
     # HSL
     top_hue = 0
     bottom_hue = 0
@@ -74,7 +74,7 @@ def main():
         # Screen color | RGB
         screen.fill((128, 128, 128))
 
-        img = setimg()
+        img = setimg(stage)
 
         # Place image in to screen
         screen.blit(img, (20, 20))
@@ -101,7 +101,7 @@ def main():
                     t_l_slider.hide()
                     b_l_slider.hide()
                     submit.hide()
-                    result()
+                    result(stage)
 
         # Get value from slider
         top_hue = t_h_slider.getValue()
@@ -119,7 +119,36 @@ def main():
             top_hue,
             top_saturation,
             top_lightness,
+            stage
         )
+
+        pygame_widgets.update(events)
+        pygame.display.update()
+
+def chosestage():
+    stage1 = pygame.image.load("image_UI/stage01.png").convert_alpha()
+
+    while True:
+        screen.fill((128, 128, 128))
+
+        screen.blit(stage1, (0, 0))
+
+        mouse_location = pygame.mouse.get_pos()
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_press = pygame.mouse.get_pressed()
+                if (
+                    mouse_press[0]
+                    and mouse_location[0] >= 0
+                    and mouse_location[0] <= 200
+                    and mouse_location[1] >= 0
+                    and mouse_location[1] <= 200
+                ):
+                    main(1)
 
         pygame_widgets.update(events)
         pygame.display.update()
@@ -136,7 +165,7 @@ def menu():
         button_positions[1],
         button_size[0],
         button_size[1],
-        text="Submit",
+        text="Start",
         inactiveColour=(200, 50, 0),
     )
     # Screen color | RGB
@@ -159,7 +188,7 @@ def menu():
                 ):
                     # The button is clicked, perform your action
                     button.hide()  # Hide the button
-                    main()
+                    chosestage()
 
         pygame_widgets.update(events)
         pygame.display.update()
