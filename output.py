@@ -15,12 +15,7 @@ def output(b_h, b_s, b_l, t_h, t_s, t_l, stage):
     cv2.imwrite(changeimg, res)
 
 
-def setimg(stage, mode):
-    if mode == 1:
-        changeimg = "pictures/baseimgs/room-%d-with-obj.png" % stage
-        img = pygame.image.load(changeimg).convert_alpha()
-        return img
-    elif mode == 2:
-        changeimg = "pictures/outputimgs/room-%d-with-obj-change.png" % stage
-        img = pygame.image.load(changeimg).convert_alpha()
-        return img
+def setimg(stage):
+    changeimg = "pictures/outputimgs/room-%d-with-obj-change.png" % stage
+    img = pygame.image.load(changeimg).convert_alpha()
+    return img
