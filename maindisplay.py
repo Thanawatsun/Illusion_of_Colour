@@ -73,7 +73,7 @@ def main(stage):
     t_s_slider = Slider(screen, 825, 275, 400, 25, min=0, max=255, step=1, initial=255)
     b_s_slider = Slider(screen, 825, 375, 400, 25, min=0, max=255, step=1, initial=0)
     t_l_slider = Slider(screen, 825, 475, 400, 25, min=0, max=255, step=1, initial=255)
-    b_l_slider = Slider(screen, 825, 575, 400, 25, min=0, max=255, step=1, initial=0)    
+    b_l_slider = Slider(screen, 825, 575, 400, 25, min=0, max=255, step=1, initial=0)
 
     while True:
         # Get value from slider
