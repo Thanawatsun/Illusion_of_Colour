@@ -3,16 +3,25 @@ import pygame_widgets
 from pygame_widgets.slider import Slider
 from pygame_widgets.button import Button
 from output import *
+from results import *
 pygame.init()
+import checkresult
 
 # Window Name
-pygame.display.set_caption("gameplay")
+
+pygame.display.set_caption("Illusion of Colour")
 
 # Window Size
 screen = pygame.display.set_mode((1280, 720))
+def play(stage):
+    # Main background
+    stagebg = "image_UI/backgroud-0%d.png" % stage
+    bgimg = pygame.image.load(stagebg).convert_alpha()
+    bgimgframe = pygame.image.load("image_UI/imageFrame.png").convert_alpha()
+    bgwantframe = pygame.image.load("image_UI/wantFrame.png").convert_alpha()
+    bgsliderframe = pygame.image.load("image_UI/sliderFrame.png").convert_alpha()
+    submitbut = pygame.image.load("image_UI/submit.png").convert_alpha()
 
-
-def gameplay():
     # HSL
     top_hue = 0
     bottom_hue = 0
@@ -20,54 +29,17 @@ def gameplay():
     bottom_Saturation = 0
     top_Lightness = 0
     bottom_Lightness = 0
+
     # Slider
-    t_h_slider = Slider(screen, 725, 50, 500, 30, min=0, max=255, step=1, initial=255)
-    b_h_slider = Slider(screen, 725, 150, 500, 30, min=0, max=255, step=1, initial=0)
-    t_s_slider = Slider(screen, 725, 250, 500, 30, min=0, max=255, step=1, initial=255)
-    b_s_slider = Slider(screen, 725, 350, 500, 30, min=0, max=255, step=1, initial=0)
-    t_l_slider = Slider(screen, 725, 450, 500, 30, min=0, max=255, step=1, initial=255)
-    b_l_slider = Slider(screen, 725, 550, 500, 30, min=0, max=255, step=1, initial=0)
-    button_positions = (1060, 650)
-    button_size = (200, 50)
+    t_h_slider = Slider(screen, 825, 75, 400, 25, min=0, max=255, step=1, initial=255)
+    b_h_slider = Slider(screen, 825, 175, 400, 25, min=0, max=255, step=1, initial=0)
+    t_s_slider = Slider(screen, 825, 275, 400, 25, min=0, max=255, step=1, initial=255)
+    b_s_slider = Slider(screen, 825, 375, 400, 25, min=0, max=255, step=1, initial=0)
+    t_l_slider = Slider(screen, 825, 475, 400, 25, min=0, max=255, step=1, initial=255)
+    b_l_slider = Slider(screen, 825, 575, 400, 25, min=0, max=255, step=1, initial=0)    
 
-    # Make button | (window, location-X, location-Y, Width, Height)
-    button = Button(
-        screen,
-        button_positions[0],
-        button_positions[1],
-        button_size[0],
-        button_size[1],
-        text="Submit",
-        inactiveColour=(200, 50, 0),
-    )
-    button_positions = (1060, 650)
-    button_size = (200, 50)
-
-    # Make button | (window, location-X, location-Y, Width, Height)
-    button = Button(
-        screen,
-        button_positions[0],
-        button_positions[1],
-        button_size[0],
-        button_size[1],
-        text="Submit",
-        inactiveColour=(200, 50, 0),
-    )
-    running = True
-    # Screen color | RGB
-    screen.fill((128, 128, 128))
-    while running:
-        mouse_location = pygame.mouse.get_pos()
-        events = pygame.event.get()
-        for event in events:
-            if event.type == pygame.QUIT:
-                pygame.quit()
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                mouse_press = pygame.mouse.get_pressed()
-                if mouse_press[0] and mouse_location[0] >= 1060 and mouse_location[0] <= 1260 and mouse_location[1] >= 650 and mouse_location[1] <= 700:
-                    t_h_slider.hide()
+    while True:
         # Get value from slider
-        
         top_hue = t_h_slider.getValue()
         bottom_hue = b_h_slider.getValue()
         top_saturation = t_s_slider.getValue()
@@ -75,7 +47,6 @@ def gameplay():
         top_lightness = t_l_slider.getValue()
         bottom_lightness = b_l_slider.getValue()
 
-        # Change output image
         output(
             bottom_hue,
             bottom_saturation,
@@ -83,11 +54,46 @@ def gameplay():
             top_hue,
             top_saturation,
             top_lightness,
+            stage
         )
-        img = setimg()
+        img = setimg(stage)
+
+        # Screen color | RGB
+        screen.fill((128, 128, 128))
+        screen.blit(bgimg, (0, 0))
+        screen.blit(bgimgframe, (23, 25))
+        screen.blit(bgwantframe, (45, 492))
+        screen.blit(bgsliderframe, (792, 26))
+        screen.blit(submitbut, (820, 620))
 
         # Place image in to screen
-        screen.blit(img, (20, 20))
+        screen.blit(img, (73, 50))
+
+        mouse_location = pygame.mouse.get_pos()
+        events = pygame.event.get()
+        for event in events:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_press = pygame.mouse.get_pressed()
+                if (
+                    mouse_press[0]
+                    and mouse_location[0] >= 820
+                    and mouse_location[0] <= 1230
+                    and mouse_location[1] >= 620
+                    and mouse_location[1] <= 686
+                ):
+                    
+                    t_h_slider.hide()
+                    b_h_slider.hide()
+                    t_s_slider.hide()
+                    b_s_slider.hide()
+                    t_l_slider.hide()
+                    b_l_slider.hide()
+                    result(stage)
+                    return
 
         pygame_widgets.update(events)
         pygame.display.update()
+

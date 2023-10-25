@@ -263,5 +263,4 @@ def menu():
         pygame_widgets.update(events)
         pygame.display.update()
 
-
 menu()
