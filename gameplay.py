@@ -46,6 +46,8 @@ def play(stage):
         obj = "Wooden Chair"
     elif stage == 2:
         obj = "Clock"
+    elif stage == 3:
+        obj = "Statue of man"
 
     while True:
         # Get value from slider

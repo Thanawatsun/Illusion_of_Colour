@@ -79,10 +79,27 @@ def help():
     returnbut = pygame.image.load("image_UI/return.png").convert_alpha()
     stagebg = "image_UI/backgroud-05.png"
     bgimg = pygame.image.load(stagebg).convert_alpha()
+    font = pygame.font.Font("freesansbold.ttf", 36)
+    help_1 = font.render("In this game, you need to get the object out of the picture by changing", True, (255, 255, 255))
+    help_2 = font.render("the color range. You will get instructions about what object we need.", True, (255, 255, 255))
+    help_3 = font.render("After that, you need to change the slider, which indicates the range of", True, (255, 255, 255))
+    help_4 = font.render("hue, saturation, and lightness. If you do it right, the background will", True, (255, 255, 255))
+    help_5 = font.render("fade to black, leaving only the object we want on the screen. If you are", True, (255, 255, 255))
+    help_6 = font.render("sure about the result, press submit, and then the game will check how", True, (255, 255, 255))
+    help_7 = font.render("good your result is, ranging from 0 to 100.", True, (255, 255, 255))
+
     while True:
         screen.fill((128, 128, 128))
         screen.blit(bgimg, (0, 0))
         screen.blit(returnbut, (490, 568))
+
+        screen.blit(help_1, (20, 20))
+        screen.blit(help_2, (20, 60))
+        screen.blit(help_3, (20, 100))
+        screen.blit(help_4, (20, 140))
+        screen.blit(help_5, (20, 180))
+        screen.blit(help_6, (20, 220))
+        screen.blit(help_7, (20, 260))
 
         mouse_location = pygame.mouse.get_pos()
         events = pygame.event.get()
