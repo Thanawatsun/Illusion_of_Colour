@@ -49,13 +49,13 @@ def result(stage):
     Similarity = similarity_percentage * 100
     font = pygame.font.Font("freesansbold.ttf", 64)
     head = font.render("Your Score", True, (255, 255, 255))
-    score = font.render('%.2f'%Similarity, True, (255, 255, 255))
+    score = font.render('%.2f'%Similarity+"%", True, (255, 255, 255))
     #score = font.render(checkresult.run(stage), True, (255, 255, 255))
     while True:
         screen.fill((128, 128, 128))
         screen.blit(bgimg, (0, 0))
         screen.blit(head, (475, 165))
-        screen.blit(score, (491, 299))
+        screen.blit(score, (560, 299))
         screen.blit(btmbut, (393, 433))
 
         mouse_location = pygame.mouse.get_pos()

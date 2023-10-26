@@ -10,7 +10,8 @@ pygame.init()
 
 # Window Name
 pygame.display.set_caption("Illusion of Colour")
-
+pygame_icon = pygame.image.load('image_UI\logo.png')
+pygame.display.set_icon(pygame_icon)
 # Window Size
 screen = pygame.display.set_mode((1280, 720))
 def chosestage():
