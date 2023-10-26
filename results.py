@@ -80,5 +80,3 @@ def result(stage):
 
         pygame_widgets.update(events)
         pygame.display.update()
-
-
